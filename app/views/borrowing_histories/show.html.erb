@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Borrower:</strong>
+  <%= @borrowing_history.borrower %>
+</p>
+
+<p>
+  <strong>Product:</strong>
+  <%= @borrowing_history.product %>
+</p>
+
+<p>
+  <strong>Borrowed at:</strong>
+  <%= @borrowing_history.borrowed_at %>
+</p>
+
+<p>
+  <strong>Return untill:</strong>
+  <%= @borrowing_history.return_untill %>
+</p>
+
+<p>
+  <strong>Returned at:</strong>
+  <%= @borrowing_history.returned_at %>
+</p>
+
+<%= link_to 'Edit', edit_borrowing_history_path(@borrowing_history) %> |
+<%= link_to 'Back', borrowing_histories_path %>

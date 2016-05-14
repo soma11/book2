@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :borrowing_histories
   resources :recommends
   resources :purchase_requests
   resources :receipt_images, only: [:show]
