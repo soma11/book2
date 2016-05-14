@@ -9,4 +9,6 @@ Rails.application.routes.draw do
       resources :books
     end
   end
+  resource :dashboard, only: [:show]
+  root to: "dashboards#show"
 end

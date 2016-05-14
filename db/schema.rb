@@ -21,13 +21,11 @@ ActiveRecord::Schema.define(version: 20160514083943) do
   end
 
   create_table "products", force: :cascade do |t|
-    t.integer  "m_book_id",       limit: 4
-    t.integer  "status",          limit: 4
-    t.datetime "requested_date"
-    t.integer  "request_user_id", limit: 4
-    t.integer  "rental_user_id",  limit: 4
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.integer  "m_book_id",      limit: 4
+    t.integer  "status",         limit: 4
+    t.integer  "rental_user_id", limit: 4
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
   create_table "purchase_requests", force: :cascade do |t|
