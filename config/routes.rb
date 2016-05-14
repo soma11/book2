@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     resources :receipts
     namespace :m do
       resources :books
+      resources :branches
     end
   end
   resource :dashboard, only: [:show]
