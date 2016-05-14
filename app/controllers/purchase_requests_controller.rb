@@ -20,8 +20,10 @@ class PurchaseRequestsController < ApplicationController
 
     respond_to do |format|
       if @purchase_request.save
-        format.html { redirect_to @purchase_request, notice: 'Purchase request was successfully created.' }
-        format.json { render :show, status: :created, location: @purchase_request }
+        format.js {}
+        format.html do
+         redirect_to @purchase_request, notice: 'Purchase request was successfully created.' 
+        end
       else
         format.html { render :new }
         format.json { render json: @purchase_request.errors, status: :unprocessable_entity }
