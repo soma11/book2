@@ -11,13 +11,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160514034659) do
+ActiveRecord::Schema.define(version: 20160514055208) do
 
   create_table "m_books", force: :cascade do |t|
     t.string   "name",       limit: 255
     t.string   "isbn",       limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
+  end
+
+  create_table "receipts", force: :cascade do |t|
+    t.string   "name",              limit: 255
+    t.integer  "product_id",        limit: 4
+    t.string   "original_filename", limit: 255
+    t.string   "content_type",      limit: 255
+    t.binary   "image",             limit: 16777215
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
   end
 
   create_table "users", force: :cascade do |t|

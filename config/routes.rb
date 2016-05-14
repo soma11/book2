@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    resources :receipts
+    namespace :m do
+      resources :books
+    end
+  end
+  resources :receipt_images, only: [:show]
   devise_for :users
   resources :users
   # The priority is based upon order of creation: first created -> highest priority.
@@ -55,9 +62,4 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
-  namespace :admin do
-    namespace :m do
-      resources :books
-    end
-  end
 end

@@ -1,0 +1,20 @@
+<%= form_for([:admin, @receipt]) do |f| %>
+  <% if @receipt.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@receipt.errors.count, "error") %> prohibited this admin_receipt from being saved:</h2>
+
+      <ul>
+      <% @receipt.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.text_field :name %><br>
+    <% if @receipt.image %><%= image_tag @receipt.image_url %><% end %>
+    <%= f.file_field :image %><br>
+    <%= f.submit %>
+  </div>
+<% end %>
