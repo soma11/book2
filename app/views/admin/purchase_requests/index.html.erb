@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Purchase Requests</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @purchase_requests.each do |purchase_request| %>
+      <tr>
+        <td><%= link_to 'add',
+          admin_purchase_request_path(purchase_request,
+            purchase_request: {state: "accepted"}),
+            method: :put, remote: true %></td>
+        <td><%= link_to 'deny',
+          admin_purchase_request_path(purchase_request,
+            purchase_request: {state: "nonaccepted"}),
+            method: :put, remote: true %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

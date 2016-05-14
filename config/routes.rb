@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :users
   namespace :admin do
     resources :receipts
+    resources :purchase_requests, only: [:index, :show, :update]
     namespace :m do
       resources :books
       resources :branches

@@ -59,7 +59,7 @@ ActiveRecord::Schema.define(version: 20160515025107) do
 
   create_table "purchase_requests", force: :cascade do |t|
     t.integer  "m_book_id",       limit: 4
-    t.integer  "status",          limit: 4, default: 0, null: false
+    t.integer  "state",           limit: 4, default: 0, null: false
     t.integer  "request_user_id", limit: 4
     t.datetime "created_at",                            null: false
     t.datetime "updated_at",                            null: false
