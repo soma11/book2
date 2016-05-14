@@ -52,11 +52,9 @@ ActiveRecord::Schema.define(version: 20160515025107) do
   add_index "notifications", ["sender_id"], name: "index_notifications_on_sender_id", using: :btree
 
   create_table "products", force: :cascade do |t|
-    t.integer  "m_book_id",      limit: 4
-    t.integer  "status",         limit: 4
-    t.integer  "rental_user_id", limit: 4
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.integer  "m_book_id",  limit: 4
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
   end
 
   create_table "purchase_requests", force: :cascade do |t|

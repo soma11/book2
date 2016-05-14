@@ -22,33 +22,18 @@ class BorrowingHistoriesController < ApplicationController
   end
 
   # POST /borrowing_histories
-  # POST /borrowing_histories.json
   def create
-    @borrowing_history = BorrowingHistory.new(borrowing_history_params)
-
-    respond_to do |format|
-      if @borrowing_history.save
-        format.html { redirect_to @borrowing_history, notice: 'Borrowing history was successfully created.' }
-        format.json { render :show, status: :created, location: @borrowing_history }
-      else
-        format.html { render :new }
-        format.json { render json: @borrowing_history.errors, status: :unprocessable_entity }
-      end
-    end
+    @borrowing_history = BorrowingHistory.new product_id: params[:product_id],
+      borrower_id: 1, borrowed_at: Time.now
+    @borrowing_history.save!
+    redirect_to products_path, notice: "Product was successfully borrowed."
   end
 
   # PATCH/PUT /borrowing_histories/1
-  # PATCH/PUT /borrowing_histories/1.json
   def update
-    respond_to do |format|
-      if @borrowing_history.update(borrowing_history_params)
-        format.html { redirect_to @borrowing_history, notice: 'Borrowing history was successfully updated.' }
-        format.json { render :show, status: :ok, location: @borrowing_history }
-      else
-        format.html { render :edit }
-        format.json { render json: @borrowing_history.errors, status: :unprocessable_entity }
-      end
-    end
+    @borrowing_history.returned_at = Time.now
+    @borrowing_history.save!
+    redirect_to products_path, notice: "Product was successfully returned."
   end
 
   # DELETE /borrowing_histories/1
