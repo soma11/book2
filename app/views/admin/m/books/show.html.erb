@@ -1,4 +1,15 @@
+  <h5>本 詳細</h5>
 <p id="notice"><%= notice %></p>
-[<%= @m_book.isbn %>]<%= @m_book.name %>
+<table class="table table-bordered table-hover">
+  <tr>
+    <th><%= "タイトル" %></th>
+    <td><%= @m_book.name %></td>
+  </tr>
+  <tr>
+    <th><%= "ISBNコード" %></th>
+    <td><%= @m_book.isbn %></td>
+  </tr>
+</table>
+
 <%= link_to '更新', edit_admin_m_book_path(@m_book) %> |
 <%= link_to '戻る', admin_m_books_path %>
