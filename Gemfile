@@ -15,6 +15,7 @@ gem "therubyracer"
 gem "less-rails"
 gem "execjs"
 gem "twitter-bootstrap-rails"
+gem 'omniauth-github'
 
 # Use ActiveModel has_secure_password
 # gem "bcrypt", "~> 3.1.7"
