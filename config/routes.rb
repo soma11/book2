@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :recommends
   resources :purchase_requests
   resources :receipt_images, only: [:show]
   devise_for :users

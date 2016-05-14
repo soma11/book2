@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160514083943) do
+ActiveRecord::Schema.define(version: 20160514094355) do
 
   create_table "m_books", force: :cascade do |t|
     t.string   "name",       limit: 255
@@ -45,6 +45,18 @@ ActiveRecord::Schema.define(version: 20160514083943) do
     t.datetime "created_at",                         null: false
     t.datetime "updated_at",                         null: false
   end
+
+  create_table "recommends", force: :cascade do |t|
+    t.integer  "sender_id",   limit: 4
+    t.integer  "product_id",  limit: 4
+    t.integer  "receiver_id", limit: 4
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
+
+  add_index "recommends", ["product_id"], name: "index_recommends_on_product_id", using: :btree
+  add_index "recommends", ["receiver_id"], name: "index_recommends_on_receiver_id", using: :btree
+  add_index "recommends", ["sender_id"], name: "index_recommends_on_sender_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "first_name",             limit: 255

@@ -1,3 +1,4 @@
 class Product < ActiveRecord::Base
-  belongs_to :m_book
+  include ProductDecorator
+  belongs_to :m_book, class_name: M::Book.name
 end
