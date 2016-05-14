@@ -1,0 +1,21 @@
+<%= form_for [:admin, @m_branch] do |f| %>
+  <% if @m_branch.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@m_branch.errors.count, "error") %> prohibited this m_branch from being saved:</h2>
+
+      <ul>
+      <% @m_branch.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

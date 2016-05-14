@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :borrowing_histories
   resources :recommends
   resources :purchase_requests
   resources :receipt_images, only: [:show]
@@ -8,6 +9,7 @@ Rails.application.routes.draw do
     resources :receipts
     namespace :m do
       resources :books
+      resources :branches
     end
   end
   resource :dashboard, only: [:show]
