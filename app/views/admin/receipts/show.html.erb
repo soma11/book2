@@ -1,0 +1,5 @@
+<p id="notice"><%= notice %></p>
+<%= @receipt.name %><br>
+<%= image_tag @receipt.image_url %><br>
+<%= link_to 'Edit', edit_admin_receipt_path(@receipt) %> |
+<%= link_to 'Back', admin_receipts_path %>
