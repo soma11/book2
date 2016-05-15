@@ -23,9 +23,23 @@ books:
   -
     name: Webアプリ開発を加速する CakePHP2定番レシピ119
     isbn: 9784798039510
+products:
+  -
+    m_book_id: 1
+  -
+    m_book_id: 2
+  -
+    m_book_id: 3
+  -
+    m_book_id: 4
+  -
+    m_book_id: 5
 EOF
 
 yaml = YAML.load data
-yaml["books"].each do |b|
-  M::Book.create! name: b["name"], isbn: b["isbn"]
+yaml["books"].each do |bd|
+  M::Book.create! name: bd["name"], isbn: bd["isbn"]
+end
+yaml["products"].each do |pd|
+  Product.create! m_book_id: pd["m_book_id"]
 end
