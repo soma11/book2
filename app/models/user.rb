@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   include UserDecorator
+
   has_many :purchase_requests
   devise :database_authenticatable, :registerable, :recoverable, :rememberable,
     :trackable, :validatable, :omniauthable, omniauth_providers: [:github]
@@ -12,6 +13,20 @@ class User < ActiveRecord::Base
       user.github_url = auth.info.urls["GitHub"]
       user.blog_url = auth.info.urls["Blog"]
     end
+  end
+
+  # allow users to update their accounts without passwords
+  def update_without_current_password(params, *options)
+    params.delete(:current_password)
+ 
+    if params[:password].blank? && params[:password_confirmation].blank?
+      params.delete(:password)
+      params.delete(:password_confirmation)
+    end
+ 
+    result = update_attributes(params, *options)
+    clean_up_passwords
+    result
   end
 
   def password_required?

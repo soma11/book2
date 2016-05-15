@@ -1,0 +1,35 @@
+<p>
+  <%= image_tag @user.image %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @user.name %>
+</p>
+
+<p>
+  <strong>Nickname:</strong>
+  <%= @user.nickname %>
+</p>
+
+<p>
+  <strong>GitHubURL:</strong>
+  <%= link_to 'こちら', @user.github_url %>
+</p>
+
+<% if @user.blog_url %>
+  <p>
+    <strong>BlogURL:</strong>
+    <%= link_to 'こちら', @user.blog_url %>
+  </p>
+<% end %>
+
+<p>
+  <strong>Current Login At:</strong>
+  <%= @user.current_sign_in_at %>
+</p>
+
+<p>
+  <strong>Last login At:</strong>
+  <%= @user.last_sign_in_at %>
+</p>
