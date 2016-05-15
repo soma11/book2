@@ -4,7 +4,11 @@ class ProductsController < ApplicationController
   # GET /products
   # GET /products.json
   def index
-    @products = Product.all.includes [:m_book, :borrowing_histories]
+    if params[:user_id]
+      @products = Product.user_products user_id_params
+    else
+      @products = Product.all.includes [:m_book, :borrowing_histories]
+    end
   end
 
   # GET /products/1
@@ -23,13 +27,17 @@ class ProductsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_product
-      @product = Product.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_product
+    @product = Product.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def product_params
-      params.require(:product).permit(:m_book_id, :status, :requested_date, :request_user_id)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def product_params
+    params.require(:product).permit(:m_book_id, :status, :requested_date, :request_user_id)
+  end
+
+  def user_id_params
+    params[:user_id]
+  end
 end
