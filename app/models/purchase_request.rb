@@ -1,5 +1,8 @@
 class PurchaseRequest < ActiveRecord::Base
   UPDATABLE_ATTRS = %i(m_book_id request_user_id state)
+
+  validates :request_user_id, :m_book_id, presence: true
+
   belongs_to :m_book
   belongs_to :user
   enum state: {waiting: 0, accepted: 1, nonaccepted: 2}
