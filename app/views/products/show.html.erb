@@ -1,24 +1,14 @@
-<p id="notice"><%= notice %></p>
-
 <p>
-  <strong>M book:</strong>
-  <%= @product.m_book_id %>
+  <strong>タイトル:</strong>
+  <%= @product.m_book.name %>
+</p>
+<p>
+  <strong>ISBNコード:</strong>
+  <%= @product.m_book.isbn %>
+</p>
+<p>
+  <strong>所有者:</strong>
+  <%= @product.owner.name %>
 </p>
 
-<p>
-  <strong>Status:</strong>
-  <%= @product.status %>
-</p>
-
-<p>
-  <strong>Requested date:</strong>
-  <%= @product.requested_date %>
-</p>
-
-<p>
-  <strong>Request user:</strong>
-  <%= @product.request_user_id %>
-</p>
-
-<%= link_to 'Edit', edit_product_path(@product) %> |
-<%= link_to 'Back', products_path %>
+<%= link_to 'Back', m_books_path %>

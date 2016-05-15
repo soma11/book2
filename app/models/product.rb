@@ -1,6 +1,6 @@
 class Product < ActiveRecord::Base
   include ProductDecorator
-  UPDATABLE_ATTRS = %i(m_book_id rental_user_id status)
+  UPDATABLE_ATTRS = %i(m_book_id owner_id)
   belongs_to :m_book, class_name: M::Book.name
   belongs_to :owner, class_name: User
   has_many :borrowing_histories, dependent: :destroy

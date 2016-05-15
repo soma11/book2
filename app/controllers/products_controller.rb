@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :destroy]
+  before_action :find_or_create_book, only: :create
 
   # GET /products
   # GET /products.json
@@ -14,6 +15,21 @@ class ProductsController < ApplicationController
   # GET /products/1
   # GET /products/1.json
   def show
+  end
+
+  def new
+    @m_book = ::M::Book.new
+    @product = Product.new
+  end
+
+  def create
+    @product = Product.new(product_params)
+
+    if @product.save
+      redirect_to @product, notice: 'Users product was successfully created.'
+    else
+      render :new
+    end
   end
 
   # DELETE /products/1
@@ -34,10 +50,17 @@ class ProductsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def product_params
-    params.require(:product).permit(:m_book_id, :status, :requested_date, :request_user_id)
+    params.require(:product).permit(Product::UPDATABLE_ATTRS)
   end
 
   def user_id_params
     params[:user_id]
+  end
+
+  def find_or_create_book
+    if params[:product][:m_book_id].blank?
+      new_book = M::Book.find_or_create_by(params[:m_book].permit(::M::Book::UPDATABLE_ATTRS))
+      params[:product][:m_book_id] = new_book.id if new_book.id
+    end
   end
 end

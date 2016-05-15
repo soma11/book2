@@ -1,0 +1,26 @@
+<h1>Book list</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>タイトル</th>
+      <th>ISBNコード</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody style="border 1">
+    <% @m_books.each do |m_book| %>
+      <tr>
+        <td><%= m_book.name %></td>
+        <td><%= m_book.isbn %></td>
+        <td>
+          <%= link_to "登録", products_path(product: {m_book_id: m_book.id, owner_id: current_user.id}), method: :post %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br>
+
+<%= link_to 'Entry new book', new_product_path %>

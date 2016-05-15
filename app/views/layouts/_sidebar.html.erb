@@ -8,6 +8,7 @@
         <li><%= link_to "本購入リクエスト", purchase_requests_path %></li>
         <li><%= link_to "社内の本一覧", products_path %></li>
         <li><%= link_to "ユーザー毎の本一覧", products_path(user_id: current_user.id) %></li>
+        <li><%= link_to "所有本の登録", m_books_path %></li>
       <% end %>
       </ul>
     </div>

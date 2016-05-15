@@ -22,5 +22,7 @@ Rails.application.routes.draw do
   end
   resource :dashboard, only: [:show]
   root to: "dashboards#show"
-  resources :books, only: :index
+  namespace :m do
+    resources :books, only: :index
+  end
 end
