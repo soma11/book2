@@ -1,6 +1,8 @@
 <h2>Editing User</h2>
 
-<%= form_for(@user) do |f| %>
+<%= render 'user' %>
+
+<%= form_for(@user, :url => {:controller => :registrations, :action => :update})  do |f| %>
   <% if @user.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
@@ -13,6 +15,10 @@
     </div>
   <% end %>
 
+  <%#
+  <%= @user.id  <%= @user.name 
+  <input type="hidden" name="user[id]" value="<%= current_user.id
+  <%= hidden_field current_user.id, 'id' %>
   <div class="field">
     <%= f.label :email %><br>
     <%= f.text_field :email %>
