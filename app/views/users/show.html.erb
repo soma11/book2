@@ -1,4 +1,44 @@
-<p id="notice"><%= notice %></p>
+<h2>Show</h2>
 
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<p>
+  <%= image_tag @user.image %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @user.name %>
+</p>
+
+<p>
+  <strong>Nickname:</strong>
+  <%= @user.nickname %>
+</p>
+
+<p>
+  <strong>GitHubURL:</strong>
+  <%= link_to 'こちら', @user.github_url %>
+</p>
+
+<% if @user.blog_url %>
+  <p>
+    <strong>BlogURL:</strong>
+    <%= link_to 'こちら', @user.blog_url %>
+  </p>
+<% end %>
+
+<p>
+  <strong>Current Login At:</strong>
+  <%= @user.current_sign_in_at %>
+</p>
+
+<p>
+  <strong>Last login At:</strong>
+  <%= @user.last_sign_in_at %>
+</p>
+
+<%= link_to 'Edit', edit_user_registration_path %> |
+<%= link_to 'Top', root_path %>
+
+
+
+

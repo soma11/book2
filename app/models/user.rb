@@ -11,15 +11,19 @@ class User < ActiveRecord::Base
     # providerとuidでUserレコードを取得する
     # 存在しない場合は、ブロック内のコードを実行して作成する
     #binding.pry
-    #where(auth.slice(:provider, :uid)).first_or_create do |user|
+    #TODO: GitHubでEmailを設定したが取得できない
+    #auth.info
+    #{"nickname"=>"xxxxxxxx", "email"=>nil, 
+    #{"name"=>"xxxxx xxxxx", 
+    #"image"=>"https://avatars.githubusercontent.com/u/10795621?v=3", 
+    #{}"urls"=>{"GitHub"=>"https://github.com/xxxxxxxx", "Blog"=>nil}}
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-      # auth.provider には "twitter"、
-      # auth.uidには twitterアカウントに基づいた個別のIDが入っている
-      # first_or_createメソッドが自動でproviderとuidを設定してくれるので、
-      # ここでは設定は必要ない
-      user.username = auth.info.nickname # twitterで利用している名前が入る
-      user.email = auth.info.email # twitterの場合入らない
-      user.image = auth.image
+      user.name = auth.info.name
+      user.nickname = auth.info.nickname
+      #user.email = auth.info.email
+      user.image = auth.info.image
+      user.github_url = auth.info.urls["GitHub"]
+      user.blog_url = auth.info.urls["Blog"]
     end
   end
 
