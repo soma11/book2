@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160515025107) do
+ActiveRecord::Schema.define(version: 20160515034950) do
 
   create_table "borrowing_histories", force: :cascade do |t|
     t.integer  "borrower_id",   limit: 4
@@ -86,6 +86,16 @@ ActiveRecord::Schema.define(version: 20160515025107) do
   add_index "recommends", ["product_id"], name: "index_recommends_on_product_id", using: :btree
   add_index "recommends", ["receiver_id"], name: "index_recommends_on_receiver_id", using: :btree
   add_index "recommends", ["sender_id"], name: "index_recommends_on_sender_id", using: :btree
+
+  create_table "reservations", force: :cascade do |t|
+    t.integer  "reserved_user_id", limit: 4
+    t.integer  "product_id",       limit: 4
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+  add_index "reservations", ["product_id"], name: "index_reservations_on_product_id", using: :btree
+  add_index "reservations", ["reserved_user_id"], name: "index_reservations_on_reserved_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "name",                   limit: 255

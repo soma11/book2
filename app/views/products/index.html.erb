@@ -6,6 +6,7 @@
       <th>ISBN</th>
       <th>Name</th>
       <th>Status</th>
+      <th>Reserved Count</th>
       <th>Borrower</th>
       <th>Borrowed Date</th>
       <th>Returned Date</th>
@@ -20,16 +21,20 @@
         <td><%= product.m_book.isbn %></td>
         <td><%= product.m_book.name %></td>
         <td><%= product.status %></td>
+        <td><%= product.reservations.count %></td>
         <td><%= history.try :borrower_id %></td>
         <td><%= l history.try :borrowed_at %></td>
         <td><%= l history.try :returned_at %></td>
         <% if product.status != :borrowed %>
           <td><%= link_to 'Brrow', product_borrowing_histories_path(product_id: product.id), method: :post, class: "btn btn-primary" %></td>
         <% else %>
-          <td></td>
+          <td><%= link_to 'Reserve', product_reservations_path(product_id: product.id), method: :post, class: "btn btn-primary" %></td>
         <% end %>
         <td>
-        <%= link_to 'Return', product_borrowing_history_path(history, product_id: product.id), method: :put, disabled: product.status == :returned, class: "btn btn-primary" %></td>
+          <% unless history.nil? %>
+            <%= link_to 'Return', product_borrowing_history_path(history, product_id: product.id), method: :put, disabled: product.status == :returned, class: "btn btn-primary" %>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>

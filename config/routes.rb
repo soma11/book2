@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resources :notifications
   resources :products do
     resources :borrowing_histories
+    resources :reservations
   end
   resources :recommends
   resources :purchase_requests

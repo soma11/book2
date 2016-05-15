@@ -23,9 +23,8 @@ class BorrowingHistoriesController < ApplicationController
 
   # POST /borrowing_histories
   def create
-    @borrowing_history = BorrowingHistory.new product_id: params[:product_id],
-      borrower_id: 1, borrowed_at: Time.now
-    @borrowing_history.save!
+    @borrowing_history = BorrowingHistory.create! product_id: params[:product_id],
+      borrower_id: current_user, borrowed_at: Time.now
     redirect_to products_path, notice: "Product was successfully borrowed."
   end
 
@@ -33,6 +32,16 @@ class BorrowingHistoriesController < ApplicationController
   def update
     @borrowing_history.returned_at = Time.now
     @borrowing_history.save!
+    product = @borrowing_history.product
+    reservation = product.reservations.try :first
+    unless reservation.nil?
+      BorrowingHistory.create! product_id: product.id,
+        borrower_id: reservation.reserved_user_id, borrowed_at: Time.now
+      Notification.create! subject: "[Return Book Notification] #{product.name} was returned.",
+        description: "Your book : #{product.name}",
+        sender_id: current_user, receiver_id: reservation.reserved_user_id
+      reservation.destroy!
+    end
     redirect_to products_path, notice: "Product was successfully returned."
   end
 

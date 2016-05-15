@@ -7,7 +7,7 @@ class ProductsController < ApplicationController
     if params[:user_id]
       @products = Product.user_products user_id_params
     else
-      @products = Product.all.includes [:m_book, :borrowing_histories]
+      @products = Product.all.includes [:m_book, :borrowing_histories, :reservations]
     end
   end
 
