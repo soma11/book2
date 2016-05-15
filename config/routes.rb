@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   resources :notifications
-  resources :borrowing_histories
+  resources :products do
+    resources :borrowing_histories
+  end
   resources :recommends
   resources :purchase_requests
   resources :receipt_images, only: [:show]
