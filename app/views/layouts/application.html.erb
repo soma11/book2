@@ -8,11 +8,11 @@
 </head>
 <body>
     <div class="container">
-      <%= render 'shared/header' %>
+      <%= render 'layouts/header' %>
       <div class="row">
         <div class="col-lg-3">
           <% if user_signed_in? %>
-            <%= render 'shared/sidebar' %>
+            <%= render 'layouts/sidebar' %>
           <% end %>
         </div>
         <div class="col-lg-9">
@@ -20,7 +20,7 @@
           <p class="alert"><%= alert %></p>
           <%= yield %>
         </div>
-      <%= render 'shared/footer' %>
+      <%= render 'layouts/footer' %>
     </div>
   </div>
 </body>

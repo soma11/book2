@@ -3,13 +3,13 @@
 <table class="table table-striped table-bordered table-hover">
   <thead>
     <tr>
-      <th>ISBN</th>
-      <th>Name</th>
-      <th>Status</th>
-      <th>Reserved Count</th>
-      <th>Borrower</th>
-      <th>Borrowed Date</th>
-      <th>Returned Date</th>
+      <th>ISBNコード</th>
+      <th>タイトル</th>
+      <th>ステータス</th>
+      <th>予約待ち人数</th>
+      <th>借りた人</th>
+      <th>借りた日</th>
+      <th>返却日</th>
       <th colspan="2"></th>
     </tr>
   </thead>
@@ -26,13 +26,13 @@
         <td><%= l history.try :borrowed_at %></td>
         <td><%= l history.try :returned_at %></td>
         <% if product.status != :borrowed %>
-          <td><%= link_to 'Brrow', product_borrowing_histories_path(product_id: product.id), method: :post, class: "btn btn-primary" %></td>
+          <td><%= link_to '借りる', product_borrowing_histories_path(product_id: product.id), method: :post, class: "btn btn-primary" %></td>
         <% else %>
-          <td><%= link_to 'Reserve', product_reservations_path(product_id: product.id), method: :post, class: "btn btn-primary" %></td>
+          <td><%= link_to '貸出中', product_reservations_path(product_id: product.id), method: :post, class: "btn btn-danger" %></td>
         <% end %>
         <td>
           <% unless history.nil? %>
-            <%= link_to 'Return', product_borrowing_history_path(history, product_id: product.id), method: :put, disabled: product.status == :returned, class: "btn btn-primary" %>
+            <%= link_to '返却', product_borrowing_history_path(history, product_id: product.id), method: :put, disabled: product.status == :returned, class: "btn btn-success" %>
           <% end %>
         </td>
       </tr>
