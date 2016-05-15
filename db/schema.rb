@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160514104733) do
+ActiveRecord::Schema.define(version: 20160515025107) do
 
   create_table "borrowing_histories", force: :cascade do |t|
     t.integer  "borrower_id",   limit: 4
@@ -26,18 +26,30 @@ ActiveRecord::Schema.define(version: 20160514104733) do
   add_index "borrowing_histories", ["borrower_id"], name: "index_borrowing_histories_on_borrower_id", using: :btree
   add_index "borrowing_histories", ["product_id"], name: "index_borrowing_histories_on_product_id", using: :btree
 
-  create_table "branches", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
-  end
-
   create_table "m_books", force: :cascade do |t|
     t.string   "name",       limit: 255
     t.string   "isbn",       limit: 255
     t.datetime "created_at",             null: false
     t.datetime "updated_at",             null: false
   end
+
+  create_table "m_branches", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "notifications", force: :cascade do |t|
+    t.string   "subject",     limit: 255
+    t.string   "description", limit: 255
+    t.integer  "sender_id",   limit: 4
+    t.integer  "receiver_id", limit: 4
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  add_index "notifications", ["receiver_id"], name: "index_notifications_on_receiver_id", using: :btree
+  add_index "notifications", ["sender_id"], name: "index_notifications_on_sender_id", using: :btree
 
   create_table "products", force: :cascade do |t|
     t.integer  "m_book_id",      limit: 4
