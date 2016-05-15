@@ -69,8 +69,12 @@ GEM
     coffee-script-source (1.10.0)
     commonjs (0.2.7)
     concurrent-ruby (1.0.2)
+    config (1.2.0)
+      activesupport (>= 3.0)
+      deep_merge (~> 1.0, >= 1.0.1)
     connection_pool (2.2.0)
     debug_inspector (0.0.2)
+    deep_merge (1.0.1)
     devise (4.1.0)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -251,6 +255,7 @@ DEPENDENCIES
   capistrano-sidekiq
   capistrano3-unicorn
   coffee-rails (~> 4.1.0)
+  config
   devise
   execjs
   jbuilder (~> 2.0)
@@ -273,4 +278,4 @@ DEPENDENCIES
   web-console (~> 2.0)
 
 BUNDLED WITH
-   1.12.1
+   1.12.3
