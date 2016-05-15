@@ -1,5 +1,9 @@
 module UserDecorator
-  def name
-    "#{last_name} #{first_name}"
+  def show_name
+    "#{name} (#{nickname})"
+  end
+
+  def thumbnail_image
+    "#{image}&s=40"
   end
 end
