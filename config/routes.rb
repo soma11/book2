@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :notifications
   resources :borrowing_histories
   resources :recommends
   resources :purchase_requests
