@@ -1,6 +1,4 @@
-class Admin::M::BooksController < ApplicationController
-  before_action :authenticate_user!
-
+class Admin::M::BooksController < Admin::BaseController
   before_action :set_m_book, only: [:show, :edit, :update, :destroy]
 
   def index

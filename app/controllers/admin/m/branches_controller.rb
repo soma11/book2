@@ -1,6 +1,4 @@
-class Admin::M::BranchesController < ApplicationController
-  before_action :authenticate_user!
-
+class Admin::M::BranchesController < Admin::BaseController
   before_action :set_m_branch, only: [:show, :edit, :update, :destroy]
 
   def index
