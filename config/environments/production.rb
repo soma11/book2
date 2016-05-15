@@ -77,3 +77,9 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 end
+
+Rails.application.config.middleware.use OmniAuth::Builder do
+  configure do |config|
+    config.full_host = "https://book2.framgia.com"
+  end
+end
